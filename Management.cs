@@ -33,15 +33,15 @@ namespace Product_Review_Management
 
         }
         
-          public void SelectiveColumns(List<Product_review> lpr)
+        public void SelectRecords(List<Product_review> lpr)
         {
-            var recordData = from p in lpr  select (p.Review, p.ProductID);
+            var recordData= from p in lpr where(p.ProductID==1|| p.ProductID==4|| p.ProductID==9)&&p.Rating>3 select p;
             foreach (var list in recordData)
             {
-                Console.WriteLine("Product ID : " + list.ProductID + " Review : " + list.Review );
+                Console.WriteLine("Product ID : " + list.ProductID + "UserID : " + list.UserID + "Rating : " + list.Rating + "Review : " + list.Review + "IsLike : " + list.IsLike);
             }
-
         }
+        
          public void skipRecords(List<Product_review> lpr)
         {
             var recordData = (from p in lpr  select p).Skip(5).ToList();
@@ -50,6 +50,15 @@ namespace Product_Review_Management
             foreach (var list in recordData)
             {
                 Console.WriteLine("Product ID : " + list.ProductID + "UserID : " + list.UserID + "Rating : " + list.Rating + "Review : " + list.Review + "IsLike : " + list.IsLike);
+            }
+
+        }
+          public void SelectiveColumns(List<Product_review> lpr)
+        {
+            var recordData = from p in lpr  select (p.Review, p.ProductID);
+            foreach (var list in recordData)
+            {
+                Console.WriteLine("Product ID : " + list.ProductID + " Review : " + list.Review );
             }
 
         }
