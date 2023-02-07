@@ -42,7 +42,9 @@ namespace ProductReviewManagement
                 Console.WriteLine("Product ID : "+ list.ProductID + "UserID : "+ list.UserID+ "Rating : "+list.Rating + "Review : "+ list.Review+ "IsLike : "+ list.IsLike);
             }*/
             Management mn = new Management();
-            mn.top3Records(pr);
+            // mn.top3Records(pr);
+            //mn.SelectRecords(pr);
+          mn.RetriveRecords(pr);
 
         }
        
