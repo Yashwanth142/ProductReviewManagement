@@ -46,13 +46,23 @@ namespace Product_Review_Management
             table.Rows.Add("25", "9", "5", "Excellent", "true");
 
             Data_table D = new Data_table();
-            D.DisplayProducts(table);
-
+             // D.DisplayProducts(table);
+            D.Display_IsLike_True(table);
         }
 
         public void DisplayProducts(DataTable dt)
         {
             var prodName = from products in dt.AsEnumerable()
+                           select products.Field<String>("ProductID");
+            foreach (var prd in prodName)
+            {
+                Console.WriteLine(prd);
+            }
+        }
+
+        public void Display_IsLike_True(DataTable dt)
+        {
+            var prodName = from products in dt.AsEnumerable() where products.Field<String>("IsLike") == "true"
                            select products.Field<String>("ProductID");
             foreach (var prd in prodName)
             {
