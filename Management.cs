@@ -26,5 +26,21 @@ namespace Product_Review_Management
                 Console.WriteLine("Product ID : " + list.ProductID + "UserID : " + list.UserID + "Rating : " + list.Rating + "Review : " + list.Review + "IsLike : " + list.IsLike);
             }
         }
+          public void RetriveRecords(List<Product_review> lpr)
+        {
+            var recordData = (from p in lpr where p.ProductID != null select p.Review).Distinct().Count();
+            Console.WriteLine("the count of types of review is: "+recordData);
+
+        }
+        
+          public void SelectiveColumns(List<Product_review> lpr)
+        {
+            var recordData = from p in lpr  select (p.Review, p.ProductID);
+            foreach (var list in recordData)
+            {
+                Console.WriteLine("Product ID : " + list.ProductID + " Review : " + list.Review );
+            }
+
+        }
     }
 }
