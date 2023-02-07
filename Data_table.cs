@@ -45,9 +45,12 @@ namespace Product_Review_Management
             table.Rows.Add("24", "9", "5", "Excellent", "true");
             table.Rows.Add("25", "9", "5", "Excellent", "true");
 
-            Data_table D = new Data_table();
-             // D.DisplayProducts(table);
-            D.Display_IsLike_True(table);
+          Data_table D = new Data_table();
+            // D.DisplayProducts(table);
+            // D.Display_IsLike_True(table);
+             D.Display_Average_Rating(table);
+            // D.Display_Review_Nice(table);
+           //D.Display_UserId_order(table);
         }
 
         public void DisplayProducts(DataTable dt)
@@ -63,6 +66,48 @@ namespace Product_Review_Management
         public void Display_IsLike_True(DataTable dt)
         {
             var prodName = from products in dt.AsEnumerable() where products.Field<String>("IsLike") == "true"
+                           select products.Field<String>("ProductID");
+            foreach (var prd in prodName)
+            {
+                Console.WriteLine(prd);
+            }
+        }
+
+        public void Display_Average_Rating(DataTable dt)
+        {
+          
+            var Records = dt.AsEnumerable().GroupBy(x => x.Field<string>("ProductID"))
+                .Select(x => new
+                {
+                    ProductID = x.Key,
+                    Rating = x.Average(x => x.Field<int>("Rating"))
+                }).ToList();
+
+          
+
+            foreach (var prd in Records)
+            {
+                Console.WriteLine(prd);
+            }
+        }
+
+        public void Display_Review_Nice(DataTable dt)
+        {
+            var prodName = from products in dt.AsEnumerable()
+                           where products.Field<String>("Review") == "nice"
+                           select products.Field<String>("ProductID");
+            foreach (var prd in prodName)
+            {
+                Console.WriteLine(prd);
+            }
+        }
+
+        public void Display_UserId_order(DataTable dt)
+            //orderby p.Rating descending
+        {
+            var prodName = from products in dt.AsEnumerable()
+                           where products.Field<String>("UserID") == "10"
+                           orderby products.Field<String>("Rating") descending
                            select products.Field<String>("ProductID");
             foreach (var prd in prodName)
             {
