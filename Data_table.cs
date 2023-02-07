@@ -45,12 +45,12 @@ namespace Product_Review_Management
             table.Rows.Add("24", "9", "5", "Excellent", "true");
             table.Rows.Add("25", "9", "5", "Excellent", "true");
 
-      Data_table D = new Data_table();
+   Data_table D = new Data_table();
             // D.DisplayProducts(table);
             // D.Display_IsLike_True(table);
            //  D.Display_Average_Rating(table);
-            // D.Display_Review_Nice(table);
-           D.Display_UserId_order(table);
+             D.Display_Review_Nice(table);
+           //D.Display_UserId_order(table);
         }
 
         public void DisplayProducts(DataTable dt)
