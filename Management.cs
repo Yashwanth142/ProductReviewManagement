@@ -18,5 +18,13 @@ namespace Product_Review_Management
             }
         
         }
+         public void SelectRecords(List<Product_review> lpr)
+        {
+            var recordData= from p in lpr where(p.ProductID==1|| p.ProductID==4|| p.ProductID==9)&&p.Rating>3 select p;
+            foreach (var list in recordData)
+            {
+                Console.WriteLine("Product ID : " + list.ProductID + "UserID : " + list.UserID + "Rating : " + list.Rating + "Review : " + list.Review + "IsLike : " + list.IsLike);
+            }
+        }
     }
 }
