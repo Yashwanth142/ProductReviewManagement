@@ -37,13 +37,14 @@ namespace ProductReviewManagement
                 new Product_review(){ ProductID = 25, UserID = 3, Rating = 5, Review = "Excellent", IsLike = true }
             };
 
-            foreach(var list in pr)
+            /*foreach(var list in pr)
             {
                 Console.WriteLine("Product ID : "+ list.ProductID + "UserID : "+ list.UserID+ "Rating : "+list.Rating + "Review : "+ list.Review+ "IsLike : "+ list.IsLike);
-            }
+            }*/
+            Management mn = new Management();
+            mn.top3Records(pr);
 
         }
-
        
     }
 }
